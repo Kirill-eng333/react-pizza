@@ -1,0 +1,197 @@
+.full-pizza {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: radial-gradient(circle at top right, #ffe0b2, #fff3e0, #fff);
+  padding: 70px 20px;
+  overflow: hidden;
+  position: relative;
+
+  // --- Легкое свечение вокруг карточки ---
+  &::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 153, 0, 0.2), transparent 70%);
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(40px);
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 50px 45px;
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(255, 150, 50, 0.25);
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    &:hover {
+      transform: translateY(-5px) rotateX(3deg);
+      box-shadow: 0 25px 70px rgba(255, 140, 0, 0.35);
+    }
+  }
+
+  &__image {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 35px rgba(255, 165, 0, 0.3);
+    transform: scale(0.9);
+    animation: popIn 0.8s ease forwards;
+    transition: transform 0.4s ease, filter 0.4s ease;
+
+    &:hover {
+      transform: scale(1.05) rotate(3deg);
+      filter: brightness(1.05) drop-shadow(0 0 15px rgba(255, 165, 0, 0.4));
+    }
+  }
+
+  &__title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #2b2b2b;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    animation: fadeIn 1s ease 0.3s both;
+  }
+
+  &__description {
+    font-size: 17px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 420px;
+    animation: fadeIn 1s ease 0.5s both;
+  }
+
+  &__price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ff6a00;
+    text-shadow: 0 2px 6px rgba(255, 100, 0, 0.3);
+    margin-bottom: 25px;
+    animation: fadeIn 1s ease 0.6s both;
+  }
+
+  &__button {
+    background: linear-gradient(90deg, #ff8a00, #ff5500);
+    color: #fff;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(255, 100, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(255, 120, 0, 0.7);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  // --- Загрузка ---
+  &__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+    color: #444;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .spinner {
+    border: 4px solid #eee;
+    border-top: 4px solid #ff8a00;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+  }
+
+  // --- Анимации ---
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
